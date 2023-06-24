@@ -17,16 +17,20 @@
                 <li class="menu-header">Menu Kelola</li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
-                        <span>Penjualan</span></a>
+                        <span>Data Penjualan</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="components-article.html">Data Penjualan</a></li>
+                        <li><a class="nav-link" href="components-article.html">Data Penjualan SD</a></li>
+                        <li><a class="nav-link" href="components-article.html">Data Penjualan SMP</a></li>
+                        <li><a class="nav-link" href="components-article.html">Data Penjualan SMA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
-                        <span>Data Barang</span></a>
+                        <span>Data Produk</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="components-article.html">Daftar Barang</a></li>
+                        <li><a class="nav-link" href="components-article.html">Produk SD</a></li>
+                        <li><a class="nav-link" href="components-article.html">Produk SMP</a></li>
+                        <li><a class="nav-link" href="components-article.html">Produk SMA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -51,11 +55,11 @@
                     </ul>
                 </li>
 
-                <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+                {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                     <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                         <i class="fas fa-rocket"></i> Documentation
                     </a>
-                </div>
+                </div> --}}
         </aside>
     </div>
 </div>
