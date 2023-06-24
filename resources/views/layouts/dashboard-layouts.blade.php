@@ -17,6 +17,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('stisla') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('stisla') }}/assets/css/components.css">
+    @stack('css')
 </head>
 
 <body>
@@ -72,6 +73,7 @@
     <script src="{{ asset('stisla') }}/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
+    @stack('js')
 </body>
 
 </html>
