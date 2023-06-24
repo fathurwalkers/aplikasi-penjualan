@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
                             <button type="submit" class="btn btn-info btn-md">
-                                Tambah Barang
+                                Proses Perhitungan
                             </button>
                         </div>
                     </div>
