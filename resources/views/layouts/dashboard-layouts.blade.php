@@ -15,8 +15,8 @@
     <!-- CSS Libraries -->
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="{{ asset('assets/stisla') }}/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/stisla') }}/assets/css/components.css">
 </head>
 
 <body>
