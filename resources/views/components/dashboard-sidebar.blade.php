@@ -53,7 +53,7 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i>
                         <span>Laporan</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('dashboard') }}">Laporan Penjualan</a></li>
+                        <li><a class="nav-link" href="{{ route('laporan-penjualan') }}">Laporan Penjualan</a></li>
                     </ul>
                 </li>
 
