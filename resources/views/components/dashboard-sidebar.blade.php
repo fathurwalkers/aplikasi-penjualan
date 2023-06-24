@@ -2,10 +2,10 @@
     <div class="main-sidebar">
         <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
-                <a href="index.html">Stisla</a>
+                <a href="{{ route('dashboard') }}">Stisla</a>
             </div>
             <div class="sidebar-brand sidebar-brand-sm">
-                <a href="index.html">St</a>
+                <a href="{{ route('dashboard') }}">St</a>
             </div>
             <ul class="sidebar-menu">
                 <li class="menu-header">Dashboard</li>
@@ -19,39 +19,39 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
                         <span>Data Penjualan</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="components-article.html">Data Penjualan SD</a></li>
-                        <li><a class="nav-link" href="components-article.html">Data Penjualan SMP</a></li>
-                        <li><a class="nav-link" href="components-article.html">Data Penjualan SMA</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-penjualan') }}">Data Penjualan SD</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-penjualan') }}">Data Penjualan SMP</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-penjualan') }}">Data Penjualan SMA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
                         <span>Data Produk</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="components-article.html">Produk SD</a></li>
-                        <li><a class="nav-link" href="components-article.html">Produk SMP</a></li>
-                        <li><a class="nav-link" href="components-article.html">Produk SMA</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-produk') }}">Produk SD</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-produk') }}">Produk SMP</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-produk') }}">Produk SMA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
                         <span>Peramalan</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="forms-advanced-form.html">Hasil Peramalan</a></li>
+                        <li><a class="nav-link" href="{{ route('dashboard') }}">Hasil Peramalan</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
                         <span>Kelola User</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="gmaps-advanced-route.html">Daftar User</a></li>
+                        <li><a href="{{ route('dashboard') }}">Daftar User</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i>
                         <span>Laporan</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="modules-calendar.html">Laporan Penjualan</a></li>
+                        <li><a class="nav-link" href="{{ route('dashboard') }}">Laporan Penjualan</a></li>
                     </ul>
                 </li>
 

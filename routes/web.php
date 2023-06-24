@@ -5,7 +5,11 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PenjualanController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => '/dashboard'], function () {
+Route::get('/login', [BackController::class, 'login'])->name('login');
+Route::post('/login/post-login', [BackController::class, 'postlogin'])->name('post-login');
+Route::post('/logout', [BackController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function () {
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => '/produk'], function () {
