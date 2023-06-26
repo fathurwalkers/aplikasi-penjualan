@@ -13,23 +13,6 @@ Route::post('/login/post-login', [BackController::class, 'postlogin'])->name('po
 Route::post('/logout', [BackController::class, 'logout'])->name('logout');
 
 Route::get('/', fn () => redirect()->route('dashboard'));
-// Route::get('/', function () {
-//     $string = "hayatsipalingenskripsi";
-//     $string2 = "hayatsipalingenskripsi";
-
-//     $hashString1 = Hash::make($string, [
-//         'rounds' => 12,
-//     ]);
-//     $hashString2 = Hash::make($string2, [
-//         'rounds' => 12,
-//     ]);
-
-//     dump($string);
-//     dump($string2);
-//     dump($hashString1);
-//     dump($hashString2);
-//     die;
-// });
 
 Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function () {
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
