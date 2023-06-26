@@ -11,6 +11,8 @@ Route::get('/login', [BackController::class, 'login'])->name('login');
 Route::post('/login/post-login', [BackController::class, 'postlogin'])->name('post-login');
 Route::post('/logout', [BackController::class, 'logout'])->name('logout');
 
+Route::get('/', fn () => redirect()->route('dashboard'));
+
 Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function () {
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
 
