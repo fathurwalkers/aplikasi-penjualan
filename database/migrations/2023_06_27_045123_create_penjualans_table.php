@@ -11,9 +11,12 @@ return new class extends Migration
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
 
-            // $table->string('barang_nama')->nullable();
-            // $table->string('barang_kategori')->nullable();
-            // $table->string('barang_ukuran')->nullable();
+            $table->integer('penjualan_periode')->nullable();
+            $table->integer('penjualan_jumlah')->nullable();
+            $table->string('penjualan_bulan')->nullable();
+
+            $table->unsignedBigInteger('barang_id')->nullable()->default(null);
+            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
 
             $table->timestamps();
         });
