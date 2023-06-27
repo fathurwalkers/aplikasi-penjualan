@@ -110,7 +110,8 @@
                                         <td class="text-center text-dark">{{ $item->barang_kategori }}</td>
                                         <td class="text-center text-dark">{{ $item->barang_ukuran }}</td>
                                         <td class="text-center text-dark">
-                                            <button class="btn btn-sm btn-info mr-1" type="button">
+                                            <button class="btn btn-sm btn-info mr-1" type="button" data-toggle="modal"
+                                                data-target="#modalubah{{ $item->id }}">
                                                 Ubah
                                             </button>
                                             <button class="btn btn-sm btn-danger mr-1" type="button" data-toggle="modal"
@@ -121,9 +122,92 @@
                                     </tr>
 
 
-                                    <!-- Modal Hapus -->
-                                    <div class="modal fade" id="modalhapus{{ $item->id }}" tabindex="-1" role="dialog"
+                                    <!-- Modal Ubah -->
+                                    <div class="modal fade" id="modalubah{{ $item->id }}" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Produk</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('tambah-produk') }}" method="post">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <p class="text-dark">
+                                                            Silahkan mengisikan data produk yang akan diubah.
+                                                        </p>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label for="barang_nama">
+                                                                        <h6>Nama Produk</h6>
+                                                                    </label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="barang_nama"
+                                                                        placeholder="Masukkan nama produk baru..."
+                                                                        name="barang_nama"
+                                                                        value="{{ $item->barang_nama }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label for="barang_kategori">
+                                                                        <h6>Kategori</h6>
+                                                                    </label>
+                                                                    <select class="form-control" id="barang_kategori"
+                                                                        name="barang_kategori">
+                                                                        <option default
+                                                                            value="{{ $item->barang_kategori }}">
+                                                                            {{ $item->barang_kategori }}</option>
+                                                                        <option value="SD">SD</option>
+                                                                        <option value="SMP">SMP</option>
+                                                                        <option value="SMA">SMA</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label for="barang_kategori">
+                                                                        <h6>Ukuran</h6>
+                                                                    </label>
+                                                                    <select class="form-control" id="barang_kategori"
+                                                                        name="barang_kategori">
+                                                                        <option default
+                                                                            value="{{ $item->barang_ukuran }}">
+                                                                            {{ $item->barang_ukuran }}</option>
+                                                                        <option value="S">S</option>
+                                                                        <option value="M">M</option>
+                                                                        <option value="L">L</option>
+                                                                        <option value="XL">XL</option>
+                                                                        <option value="XXL">XXL</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batalkan</button>
+                                                        <button type="submit" class="btn btn-danger">Ubah Data</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Modal Ubah -->
+
+                                    <!-- Modal Hapus -->
+                                    <div class="modal fade" id="modalhapus{{ $item->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
