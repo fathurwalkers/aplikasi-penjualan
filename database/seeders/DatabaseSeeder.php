@@ -9,15 +9,81 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 use Illuminate\Support\Arr;
-use App\Models\Login;
+use App\Models\{Login, Barang};
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
         // SEEDER BARANG
+        // \App\Models\Barang::factory(100)->create();
+        // ========================================================
 
-        \App\Models\Barang::factory(100)->create();
+        // ========================================================
+        $array_barang_sd = [
+            'Baju Putih',
+            'Rok Merah',
+            'Celana Merah',
+            'Baju Pramuka',
+            'Celana Pramuka',
+            'Rok Pramuka',
+        ];
+        $array_barang_smp = [
+            'Baju Putih',
+            'Rok Biru',
+            'Celana Biru',
+            'Baju Pramuka',
+            'Rok Pramuka',
+            'Celana Pramuka'
+        ];
+        $array_barang_sma = [
+            'Baju Putih',
+            'Rok Abu',
+            'Celana Abu',
+            'Baju Pramuka',
+            'Rok Pramuka',
+            'Rok Hitam',
+            'Celana Pramuka'
+        ];
+        $array_ukuran = ['S', 'M', 'L', 'XL', 'XXL'];
+
+        foreach ($array_barang_sd as $item1) {
+            foreach ($array_ukuran as $item2) {
+                $produk = new Barang;
+                $produk->create([
+                    'barang_nama' => $item1,
+                    'barang_kategori' => "SD",
+                    'barang_ukuran' => $item2,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
+        foreach ($array_barang_smp as $item1) {
+            foreach ($array_ukuran as $item2) {
+                $produk = new Barang;
+                $produk->create([
+                    'barang_nama' => $item1,
+                    'barang_kategori' => "SMP",
+                    'barang_ukuran' => $item2,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
+        foreach ($array_barang_sma as $item1) {
+            foreach ($array_ukuran as $item2) {
+                $produk = new Barang;
+                $produk->create([
+                    'barang_nama' => $item1,
+                    'barang_kategori' => "SMA",
+                    'barang_ukuran' => $item2,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
+        // ========================================================
 
         // ADMIN
         $token = Str::random(16);
