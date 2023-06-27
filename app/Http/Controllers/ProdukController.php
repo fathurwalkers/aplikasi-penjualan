@@ -18,8 +18,6 @@ class ProdukController extends Controller
 
     public function hapus_produk(Request $request, $id)
     {
-        $session_users = session('data_login');
-        $users = Login::find($session_users->id);
         $produk = Barang::find($id);
         $kategori = $produk->barang_kategori;
         $hapus_produk = $produk->forceDelete();
@@ -33,6 +31,7 @@ class ProdukController extends Controller
     public function update_produk(Request $request, $id)
     {
         $produk = Barang::find($id);
+        // dd($produk);
         $kategori = $produk->barang_kategori;
         $update_produk = $produk->update([
             'barang_nama' => $request->barang_nama,
@@ -41,9 +40,9 @@ class ProdukController extends Controller
             'updated_at' => now()
         ]);
         if ($update_produk == true) {
-            return redirect()->route('daftar-produk', $kategori)->with('status', 'Produk telah berhasil dihapus!');
+            return redirect()->route('daftar-produk', $produk->barang_kategori)->with('status', 'Produk telah berhasil diubah.');
         } else {
-            return redirect()->route('daftar-produk', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat dihapus.');
+            return redirect()->route('daftar-produk', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat diubah.');
         }
     }
 

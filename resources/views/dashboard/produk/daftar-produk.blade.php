@@ -25,6 +25,8 @@
                 <form action="{{ route('tambah-produk') }}" method="post">
                     @csrf
 
+                    <input type="hidden" name="kategori" value="{{ $kategori }}">
+
                     <p class="text-dark">
                         Silahkan masukkan informasi Nama dan Jumlah stok barang baru.
                     </p>
@@ -134,7 +136,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('tambah-produk') }}" method="post">
+                                                <form action="{{ route('update-produk', $item->id) }}" method="post">
                                                     @csrf
                                                     <div class="modal-body">
                                                         <p class="text-dark">
@@ -176,11 +178,11 @@
                                                         <div class="row">
                                                             <div class="col-sm-12 col-md-12 col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label for="barang_kategori">
+                                                                    <label for="barang_ukuran">
                                                                         <h6>Ukuran</h6>
                                                                     </label>
-                                                                    <select class="form-control" id="barang_kategori"
-                                                                        name="barang_kategori">
+                                                                    <select class="form-control" id="barang_ukuran"
+                                                                        name="barang_ukuran">
                                                                         <option default
                                                                             value="{{ $item->barang_ukuran }}">
                                                                             {{ $item->barang_ukuran }}</option>
