@@ -32,10 +32,19 @@ class ProdukController extends Controller
 
     public function update_produk(Request $request, $id)
     {
-        $session_users = session('data_login');
-        $users = Login::find($session_users->id);
         $produk = Barang::find($id);
-        die;
+        $kategori = $produk->barang_kategori;
+        $update_produk = $produk->update([
+            'barang_nama' => $request->barang_nama,
+            'barang_kategori' => $request->barang_kategori,
+            'barang_ukuran' => $request->barang_ukuran,
+            'updated_at' => now()
+        ]);
+        if ($update_produk == true) {
+            return redirect()->route('daftar-produk', $kategori)->with('status', 'Produk telah berhasil dihapus!');
+        } else {
+            return redirect()->route('daftar-produk', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat dihapus.');
+        }
     }
 
     public function tambah_produk(Request $request)
