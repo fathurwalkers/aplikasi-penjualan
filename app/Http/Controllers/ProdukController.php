@@ -51,6 +51,18 @@ class ProdukController extends Controller
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
         $produk = new Barang;
-        die;
+        $kategori = $request->kategori;
+        $save_produk = $produk->create([
+            'barang_nama' => $request->barang_nama,
+            'barang_kategori' => $request->barang_kategori,
+            'barang_ukuran' => $request->barang_ukuran,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        if ($save_produk == true) {
+            return redirect()->route('daftar-produk', $save_produk->barang_kategori)->with('status', 'Produk telah berhasil dibuat.');
+        } else {
+            return redirect()->route('daftar-produk', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat dibuat.');
+        }
     }
 }

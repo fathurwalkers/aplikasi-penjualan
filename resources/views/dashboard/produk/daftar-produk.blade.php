@@ -55,10 +55,10 @@
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4">
                             <div class="form-group">
-                                <label for="barang_kategori">
+                                <label for="barang_ukuran">
                                     <h6>Ukuran</h6>
                                 </label>
-                                <select class="form-control" id="barang_kategori" name="barang_kategori">
+                                <select class="form-control" id="barang_ukuran" name="barang_ukuran">
                                     <option default value="S">S</option>
                                     <option value="M">M</option>
                                     <option value="L">L</option>
