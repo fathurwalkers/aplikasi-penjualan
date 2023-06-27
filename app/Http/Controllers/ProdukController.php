@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Barang;
+use App\Models\{Barang, Login};
 
 class ProdukController extends Controller
 {
@@ -21,7 +21,13 @@ class ProdukController extends Controller
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
         $produk = Barang::find($id);
-        die;
+        $kategori = $produk->barang_kategori;
+        $hapus_produk = $produk->forceDelete();
+        if ($hapus_produk == true) {
+            return redirect()->route('daftar-produk', $kategori)->with('status', 'Produk telah berhasil dihapus!');
+        } else {
+            return redirect()->route('daftar-produk', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat dihapus.');
+        }
     }
 
     public function update_produk(Request $request, $id)

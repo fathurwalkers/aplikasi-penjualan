@@ -17,6 +17,11 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('stisla') }}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('stisla') }}/assets/css/components.css">
+    <style>
+        .modal-backdrop.show {
+            display: none !important;
+        }
+    </style>
     @stack('css')
 </head>
 
@@ -34,6 +39,16 @@
                 <section class="section">
                     <div class="section-header">
                         @yield('header-content')
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            @if (session('status'))
+                                <div class="alert alert-info">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="section-body">
