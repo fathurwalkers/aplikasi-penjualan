@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        // SEEDER BARANG
+
+        \App\Models\Barang::factory(100)->create();
+
         // ADMIN
         $token = Str::random(16);
         $role = "admin";
