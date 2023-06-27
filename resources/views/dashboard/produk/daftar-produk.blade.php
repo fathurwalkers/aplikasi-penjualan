@@ -87,20 +87,22 @@
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <td class="text-center text-dark">#</td>
-                                    <td class="text-center text-dark">BARANG23929</td>
-                                    <td class="text-center text-dark">Barang 1</td>
-                                    <td class="text-center text-dark">23</td>
-                                    <td class="text-center text-dark">
-                                        <button class="btn btn-sm btn-info mr-1" type="button">
-                                            Ubah
-                                        </button>
-                                        <button class="btn btn-sm btn-danger mr-1" type="button">
-                                            Hapus
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach ($barang as $item)
+                                    <tr>
+                                        <td class="text-center text-dark">{{ $loop->iteration }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_nama }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_kategori }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_ukuran }}</td>
+                                        <td class="text-center text-dark">
+                                            <button class="btn btn-sm btn-info mr-1" type="button">
+                                                Ubah
+                                            </button>
+                                            <button class="btn btn-sm btn-danger mr-1" type="button">
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
