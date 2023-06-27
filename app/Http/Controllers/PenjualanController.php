@@ -35,22 +35,13 @@ class PenjualanController extends Controller
 
     public function data_penjualan(Request $request)
     {
-        $barangKategori = 'SMP';
+        $barangKategori = $request->kategori;
         $bulan = $request->bulan;
         $periode = $request->periode;
         $penjualan = Penjualan::where(['penjualan_bulan' => $bulan, 'penjualan_periode' => $periode])->whereHas('barang', function ($query) use ($barangKategori) {
             $query->where('barang_kategori', $barangKategori);
         })->get();
-        // $penjualan = Penjualan::where(['penjualan_bulan' => $bulan, 'penjualan_periode' => $periode])->whereHas('barang', function ($query) use ($barangKategori) {
-        //     $query->where('barang_kategori', $barangKategori);
-        // })->get();
         $index_count = 1;
-        // foreach ($penjualan->barang as $p) {
-        //     $p->where('barang_kategori', 'SMP');
-        //     dump($p);
-        // }
-        // die;
-        // dd($penjualan);
         return view('dashboard.penjualan.data-penjualan', [
             'penjualan' => $penjualan,
             'index_count' => $index_count,

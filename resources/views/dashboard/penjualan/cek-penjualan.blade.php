@@ -30,10 +30,22 @@
                     </p>
 
                     <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="form-group">
+                                <label for="kategori">
+                                    <h6>Kategori</h6>
+                                </label>
+                                <select class="form-control" id="kategori" name="kategori">
+                                    @foreach ($array_kategori as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                             <div class="form-group">
                                 <label for="bulan">
-                                    <h6>Kategori</h6>
+                                    <h6>Bulan</h6>
                                 </label>
                                 <select class="form-control" id="bulan" name="bulan">
                                     @foreach ($array_bulan as $item)
@@ -42,7 +54,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                             <div class="form-group">
                                 <label for="periode">
                                     <h6>Periode</h6>

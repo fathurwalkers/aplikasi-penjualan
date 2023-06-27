@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 use Illuminate\Support\Arr;
 use App\Models\Login;
+use App\Models\Penjualan;
 
 class BackController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        $penjualan = Penjualan::all()->count();
+        $produk = Barang::all()->count();
+        return view('dashboard.index', [
+            'penjualan' => $penjualan,
+            'produk' => $produk
+        ]);
     }
 
     public function login()

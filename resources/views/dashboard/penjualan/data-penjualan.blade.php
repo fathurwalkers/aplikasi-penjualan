@@ -46,7 +46,7 @@
 
                                 @foreach ($penjualan as $item)
                                     <tr>
-                                        <td class="text-center text-dark">{{ $index_count++ }}</td>
+                                        <td class="text-center text-dark">{{ $loop->iteration }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_nama }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_kategori }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_ukuran }}</td>
