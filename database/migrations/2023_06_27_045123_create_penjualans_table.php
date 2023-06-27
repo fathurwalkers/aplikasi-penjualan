@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
 
-            $table->string('barang_nama')->nullable();
-            $table->string('barang_kategori')->nullable();
-            $table->string('barang_ukuran')->nullable();
+            // $table->string('barang_nama')->nullable();
+            // $table->string('barang_kategori')->nullable();
+            // $table->string('barang_ukuran')->nullable();
 
             $table->timestamps();
         });
