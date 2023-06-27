@@ -15,4 +15,28 @@ class ProdukController extends Controller
             'kategori' => $kategori
         ]);
     }
+
+    public function hapus_produk(Request $request, $id)
+    {
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $produk = Barang::find($id);
+        die;
+    }
+
+    public function update_produk(Request $request, $id)
+    {
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $produk = Barang::find($id);
+        die;
+    }
+
+    public function tambah_produk(Request $request)
+    {
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $produk = new Barang;
+        die;
+    }
 }

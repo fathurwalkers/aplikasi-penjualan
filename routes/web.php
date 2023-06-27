@@ -1,10 +1,6 @@
 <?php
 
 use App\Http\Controllers\{BackController, LaporanController, ProdukController, PenjualanController, PeramalanController};
-// use App\Http\Controllers\LaporanController;
-// use App\Http\Controllers\ProdukController;
-// use App\Http\Controllers\PenjualanController;
-// use App\Http\Controllers\PeramalanController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +22,11 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     });
 
     Route::group(['prefix' => '/produk'], function () {
+        Route::get('/', fn () => redirect()->route('daftar-produk', 'SD'));
         Route::get('/daftar-produk/{kategori}', [ProdukController::class, 'daftar_produk'])->name('daftar-produk');
+        Route::post('/tambah-produk', [ProdukController::class, 'tambah_produk'])->name('tambah-produk');
+        Route::post('/update-produk/{id}', [ProdukController::class, 'update_produk'])->name('update-produk');
+        Route::post('/hapus-produk/{id}', [ProdukController::class, 'hapus_produk'])->name('hapus-produk');
     });
 
     Route::group(['prefix' => '/penjualan'], function () {

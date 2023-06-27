@@ -22,7 +22,7 @@
         <div class="card-body">
             <div class="container">
 
-                <form action="" method="post">
+                <form action="{{ route('tambah-produk') }}" method="post">
                     @csrf
 
                     <p class="text-dark">
@@ -32,21 +32,25 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="produk_nama">
-                                    <h6>Nama Barang</h6>
+                                <label for="barang_nama">
+                                    <h6>Nama Produk</h6>
                                 </label>
-                                <input type="text" class="form-control" id="produk_nama"
-                                    placeholder="Masukkan keterangan pengaduan..." name="produk_nama">
+                                <input type="text" class="form-control" id="barang_nama"
+                                    placeholder="Masukkan nama produk baru..." name="barang_nama">
                             </div>
                         </div>
-
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label for="produk_stok">
-                                    <h6>Stok</h6>
-                                </label>
-                                <input type="number" class="form-control" id="produk_stok"
-                                    placeholder="Masukkan keterangan pengaduan..." name="produk_stok">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="barang_kategori">
+                                        <h6>Kategori Produk</h6>
+                                    </label>
+                                    <select class="form-control" id="barang_kategori" name="barang_kategori">
+                                        <option default value="SD">SD</option>
+                                        <option value="SMP">SMP</option>
+                                        <option value="SMA">SMA</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
