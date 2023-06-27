@@ -31,7 +31,9 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
 
     Route::group(['prefix' => '/penjualan'], function () {
         Route::get('/', fn () => redirect()->route('daftar-penjualan'));
-        Route::get('/daftar-penjualan', [PenjualanController::class, 'daftar_penjualan'])->name('daftar-penjualan');
+        Route::get('/daftar-penjualan/{kategori}', [PenjualanController::class, 'daftar_penjualan'])->name('daftar-penjualan');
+        Route::get('/cek-penjualan', [PenjualanController::class, 'cek_penjualan'])->name('cek-penjualan');
+        Route::post('/data-penjualan', [PenjualanController::class, 'data_penjualan'])->name('data-penjualan');
         Route::get('/generate-penjualan-1', [PenjualanController::class, 'generate_penjualan_1'])->name('generate-penjualan-1');
         Route::get('/generate-penjualan-2', [PenjualanController::class, 'generate_penjualan_2'])->name('generate-penjualan-2');
         Route::get('/generate-penjualan-3', [PenjualanController::class, 'generate_penjualan_3'])->name('generate-penjualan-3');

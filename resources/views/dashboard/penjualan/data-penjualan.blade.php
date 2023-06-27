@@ -8,7 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <h5 class="my-auto text-dark">Penjualan - Daftar Penjualan</h5>
+                <h5 class="my-auto text-dark">Penjualan - Data Penjualan Bulan {{ $bulan }} Periode
+                    {{ $periode }}</h5>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6">
 
@@ -45,7 +46,7 @@
 
                                 @foreach ($penjualan as $item)
                                     <tr>
-                                        <td class="text-center text-dark">{{ $loop->iteration }}</td>
+                                        <td class="text-center text-dark">{{ $index_count++ }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_nama }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_kategori }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_ukuran }}</td>

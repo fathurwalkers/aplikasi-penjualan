@@ -10,12 +10,52 @@ use App\Models\Penjualan;
 
 class PenjualanController extends Controller
 {
-    public function daftar_penjualan()
+    public function daftar_penjualan($kategori)
     {
-        $penjualan = Penjualan::all()->count();
-        dd($penjualan);
+        $penjualan = Penjualan::whereHas('barang', function ($query) use ($kategori) {
+            $query->where('barang_kategori', $kategori);
+        })->get();
         return view('dashboard.penjualan.daftar-penjualan', [
-            'penjualan' => $penjualan
+            'penjualan' => $penjualan,
+            'kategori' => $kategori
+        ]);
+    }
+
+    public function cek_penjualan()
+    {
+        $array_bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $array_periode = [1,2,3,4];
+        $array_kategori = ['SD', 'SMP', 'SMA'];
+        return view('dashboard.penjualan.cek-penjualan', [
+            'array_bulan' => $array_bulan,
+            'array_periode' => $array_periode,
+            'array_kategori' => $array_kategori
+        ]);
+    }
+
+    public function data_penjualan(Request $request)
+    {
+        $barangKategori = 'SMP';
+        $bulan = $request->bulan;
+        $periode = $request->periode;
+        $penjualan = Penjualan::where(['penjualan_bulan' => $bulan, 'penjualan_periode' => $periode])->whereHas('barang', function ($query) use ($barangKategori) {
+            $query->where('barang_kategori', $barangKategori);
+        })->get();
+        // $penjualan = Penjualan::where(['penjualan_bulan' => $bulan, 'penjualan_periode' => $periode])->whereHas('barang', function ($query) use ($barangKategori) {
+        //     $query->where('barang_kategori', $barangKategori);
+        // })->get();
+        $index_count = 1;
+        // foreach ($penjualan->barang as $p) {
+        //     $p->where('barang_kategori', 'SMP');
+        //     dump($p);
+        // }
+        // die;
+        // dd($penjualan);
+        return view('dashboard.penjualan.data-penjualan', [
+            'penjualan' => $penjualan,
+            'index_count' => $index_count,
+            'bulan' => $bulan,
+            'periode' => $periode,
         ]);
     }
 

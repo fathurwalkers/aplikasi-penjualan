@@ -19,9 +19,12 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
                         <span>Data Penjualan</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('daftar-penjualan') }}">Data Penjualan SD</a></li>
-                        <li><a class="nav-link" href="{{ route('daftar-penjualan') }}">Data Penjualan SMP</a></li>
-                        <li><a class="nav-link" href="{{ route('daftar-penjualan') }}">Data Penjualan SMA</a></li>
+                        <li><a class="nav-link" href="{{ route('cek-penjualan') }}">Cek Penjualan</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-penjualan', 'SD') }}">Data Penjualan SD</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-penjualan', 'SMP') }}">Data Penjualan SMP</a>
+                        </li>
+                        <li><a class="nav-link" href="{{ route('daftar-penjualan', 'SMA') }}">Data Penjualan SMA</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
