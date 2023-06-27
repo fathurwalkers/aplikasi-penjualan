@@ -79,9 +79,9 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Stok Barang</th>
+                                    <th>Nama Produk</th>
+                                    <th>Kategori Produk</th>
+                                    <th>Ukuran Produk</th>
                                     <th>Kelola</th>
                                 </tr>
                             </thead>

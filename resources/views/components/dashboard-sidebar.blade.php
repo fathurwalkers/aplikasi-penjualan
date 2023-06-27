@@ -28,9 +28,9 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
                         <span>Data Produk</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('daftar-produk') }}">Produk SD</a></li>
-                        <li><a class="nav-link" href="{{ route('daftar-produk') }}">Produk SMP</a></li>
-                        <li><a class="nav-link" href="{{ route('daftar-produk') }}">Produk SMA</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-produk', 'SD') }}">Produk SD</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-produk', 'SMP') }}">Produk SMP</a></li>
+                        <li><a class="nav-link" href="{{ route('daftar-produk', 'SMA') }}">Produk SMA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

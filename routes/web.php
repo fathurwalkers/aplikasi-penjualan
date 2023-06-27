@@ -26,7 +26,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     });
 
     Route::group(['prefix' => '/produk'], function () {
-        Route::get('/daftar-produk', [ProdukController::class, 'daftar_produk'])->name('daftar-produk');
+        Route::get('/daftar-produk/{kategori}', [ProdukController::class, 'daftar_produk'])->name('daftar-produk');
     });
 
     Route::group(['prefix' => '/penjualan'], function () {
