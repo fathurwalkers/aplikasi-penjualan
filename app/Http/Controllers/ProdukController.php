@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\{Request, Str};
+use Illuminate\Http\Request;
 use App\Models\{Barang, Login};
+use Illuminate\Support\Str;
 
 class ProdukController extends Controller
 {
