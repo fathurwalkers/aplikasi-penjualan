@@ -97,6 +97,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
+                                    <th>Kode Produk</th>
                                     <th>Nama Produk</th>
                                     <th>Kategori Produk</th>
                                     <th>Ukuran Produk</th>
@@ -108,6 +109,7 @@
                                 @foreach ($barang as $item)
                                     <tr>
                                         <td class="text-center text-dark">{{ $loop->iteration }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_kode }}</td>
                                         <td class="text-center text-dark">{{ $item->barang_nama }}</td>
                                         <td class="text-center text-dark">{{ $item->barang_kategori }}</td>
                                         <td class="text-center text-dark">{{ $item->barang_ukuran }}</td>
