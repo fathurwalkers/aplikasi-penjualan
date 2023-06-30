@@ -36,8 +36,9 @@
                                     <th>Nama Produk</th>
                                     <th>Kategori Produk</th>
                                     <th>Ukuran</th>
-                                    <th>Bulan</th>
-                                    <th>Periode</th>
+                                    <th>Bulan Awal</th>
+                                    <th>Bulan Akhir</th>
+                                    <th>Tahun</th>
                                     <th>Jumlah Penjualan</th>
                                 </tr>
                             </thead>

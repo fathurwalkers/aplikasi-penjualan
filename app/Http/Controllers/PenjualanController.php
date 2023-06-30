@@ -39,14 +39,15 @@ class PenjualanController extends Controller
         $bulan_awal = $request->bulan_awal;
         $bulan_akhir = $request->bulan_akhir;
         $tahun = $request->tahun;
-        // $penjualan = Penjualan::where(['penjualan_bulan' => $bulan, 'penjualan_periode' => $periode])->whereHas('barang', function ($query) use ($barangKategori) {
-        //     $query->where('barang_kategori', $barangKategori);
-        // })->get();
-
-        $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereRaw('MONTH(penjualan_bulan_awal) >= ?', [$bulan_awal])->whereRaw('MONTH(penjualan_bulan_akhir) >= ?', [$bulan_akhir])->whereHas('barang', function ($query) use ($barangKategori) {
-            $query->where('barang_kategori', $barangKategori);
-        })->get();
-        // dd($penjualan->count());
+        if ($bulan_awal == $bulan_akhir) {
+            $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', $bulan_awal)->whereHas('barang', function ($query) use ($barangKategori) {
+                $query->where('barang_kategori', $barangKategori);
+            })->get();
+        } else {
+            $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barangKategori) {
+                $query->where('barang_kategori', $barangKategori);
+            })->get();
+        }
         $index_count = 1;
         return view('dashboard.penjualan.data-penjualan', [
             'penjualan' => $penjualan,

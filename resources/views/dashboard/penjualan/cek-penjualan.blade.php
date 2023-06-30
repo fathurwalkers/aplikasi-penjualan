@@ -61,8 +61,7 @@
                                 </label>
                                 <select class="form-control" id="bulan_awal" name="bulan_awal">
                                     @foreach ($array_bulan as $item1)
-                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}
-                                        </option>
+                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}</option>
                                     @endforeach
                                 </select>
                             </div>
