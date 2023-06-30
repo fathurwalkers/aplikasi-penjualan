@@ -49,7 +49,7 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
                         <span>Kelola User</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('daftar-user') }}">Daftar User</a></li>
+                        <li><a href="{{ route('daftar-users') }}">Daftar User</a></li>
                     </ul>
                 </li>
         </aside>

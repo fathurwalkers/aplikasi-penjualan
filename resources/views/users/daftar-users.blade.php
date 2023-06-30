@@ -33,22 +33,24 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Produk</th>
-                                    <th>Nama Produk</th>
-                                    <th>Kategori Produk</th>
-                                    <th>Ukuran Produk</th>
+                                    <th>Nama</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>No. HP / Telepon</th>
+                                    <th>Status</th>
                                     <th>Kelola</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($barang as $item)
+                                @foreach ($all_users as $item)
                                     <tr>
                                         <td class="text-center text-dark">{{ $loop->iteration }}</td>
-                                        <td class="text-center text-dark">{{ $item->barang_kode }}</td>
-                                        <td class="text-center text-dark">{{ $item->barang_nama }}</td>
-                                        <td class="text-center text-dark">{{ $item->barang_kategori }}</td>
-                                        <td class="text-center text-dark">{{ $item->barang_ukuran }}</td>
+                                        <td class="text-center text-dark">{{ $item->login_nama }}</td>
+                                        <td class="text-center text-dark">{{ $item->login_username }}</td>
+                                        <td class="text-center text-dark">{{ $item->login_email }}</td>
+                                        <td class="text-center text-dark">{{ $item->login_telepon }}</td>
+                                        <td class="text-center text-dark">{{ $item->login_status }}</td>
                                         <td class="text-center text-dark">
                                             <button class="btn btn-sm btn-info mr-1" type="button" data-toggle="modal"
                                                 data-target="#modalubah{{ $item->id }}">

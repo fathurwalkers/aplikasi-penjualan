@@ -25,10 +25,22 @@ class BackController extends Controller
 
     public function daftar_users()
     {
-        $all_users = Login::all();
+        $all_users = Login::where('login_level', 'user')->get();
         return view('users.daftar-users', [
             'all_users' => $all_users
         ]);
+    }
+
+    public function hapus_user(Request $request, $id)
+    {
+        $login = Login::find($id);
+        $nama_users = $login->login_nama;
+        $hapus_users = $login->forceDelete();
+        if ($hapus_users == true) {
+            return redirect()->route('daftar-users', $nama_users)->with('status', 'User telah berhasil dihapus.');
+        } else {
+            return redirect()->route('daftar-users', $nama_users)->with('status', 'Terjadi kesalahan. Data tidak dapat dihapus.');
+        }
     }
 
     public function login()
