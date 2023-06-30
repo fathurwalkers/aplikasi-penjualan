@@ -8,8 +8,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <h5 class="my-auto text-dark">Penjualan - Data Penjualan Bulan {{ $bulan }} Periode
-                    {{ $periode }}</h5>
+                <h5 class="my-auto text-dark">Penjualan - Data Penjualan Bulan {{ date('m', strtotime($bulan_awal)) }} -
+                    {{ date('m', strtotime($bulan_akhir)) }}
+                    Tahun
+                    {{ $tahun }}</h5>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6">
 
@@ -37,8 +39,9 @@
                                     <th>Nama Produk</th>
                                     <th>Kategori Produk</th>
                                     <th>Ukuran</th>
-                                    <th>Bulan</th>
-                                    <th>Periode</th>
+                                    <th>Bulan Awal</th>
+                                    <th>Bulan Akhir</th>
+                                    <th>Tahun</th>
                                     <th>Jumlah Penjualan</th>
                                 </tr>
                             </thead>
@@ -50,8 +53,13 @@
                                         <td class="text-center text-dark">{{ $item->barang->barang_nama }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_kategori }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_ukuran }}</td>
-                                        <td class="text-center text-dark">{{ $item->penjualan_bulan }}</td>
-                                        <td class="text-center text-dark">{{ $item->penjualan_periode }}</td>
+                                        <td class="text-center text-dark">
+                                            {{ date('d-M-Y', strtotime($item->penjualan_bulan_awal)) }}
+                                        </td>
+                                        <td class="text-center text-dark">
+                                            {{ date('d-M-Y', strtotime($item->penjualan_bulan_akhir)) }}
+                                        </td>
+                                        <td class="text-center text-dark">{{ $item->penjualan_tahun }}</td>
                                         <td class="text-center text-dark">{{ $item->penjualan_jumlah }}</td>
                                     </tr>
                                 @endforeach

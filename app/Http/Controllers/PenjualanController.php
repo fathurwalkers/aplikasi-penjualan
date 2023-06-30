@@ -43,14 +43,17 @@ class PenjualanController extends Controller
         //     $query->where('barang_kategori', $barangKategori);
         // })->get();
 
-        $penjualan = Penjualan::whereRaw('MONTH(penjualan_bulan_awal) >= ?', [$bulan_awal])->whereRaw('MONTH(penjualan_bulan_akhir) >= ?', [$bulan_akhir])->get();
-        dd($penjualan->count());
+        $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereRaw('MONTH(penjualan_bulan_awal) >= ?', [$bulan_awal])->whereRaw('MONTH(penjualan_bulan_akhir) >= ?', [$bulan_akhir])->whereHas('barang', function ($query) use ($barangKategori) {
+            $query->where('barang_kategori', $barangKategori);
+        })->get();
+        // dd($penjualan->count());
         $index_count = 1;
         return view('dashboard.penjualan.data-penjualan', [
             'penjualan' => $penjualan,
             'index_count' => $index_count,
-            'bulan' => $bulan,
-            'periode' => $periode,
+            'bulan_awal' => $bulan_awal,
+            'bulan_akhir' => $bulan_akhir,
+            'tahun' => $tahun,
         ]);
     }
 

@@ -49,8 +49,13 @@
                                         <td class="text-center text-dark">{{ $item->barang->barang_nama }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_kategori }}</td>
                                         <td class="text-center text-dark">{{ $item->barang->barang_ukuran }}</td>
-                                        <td class="text-center text-dark">{{ $item->penjualan_bulan }}</td>
-                                        <td class="text-center text-dark">{{ $item->penjualan_periode }}</td>
+                                        <td class="text-center text-dark">
+                                            {{ date('d-M-Y', strtotime($item->penjualan_bulan_awal)) }}
+                                        </td>
+                                        <td class="text-center text-dark">
+                                            {{ date('d-M-Y', strtotime($item->penjualan_bulan_akhir)) }}
+                                        </td>
+                                        <td class="text-center text-dark">{{ $item->penjualan_tahun }}</td>
                                         <td class="text-center text-dark">{{ $item->penjualan_jumlah }}</td>
                                     </tr>
                                 @endforeach
