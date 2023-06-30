@@ -31,9 +31,9 @@ class ProdukController extends Controller
     public function update_produk(Request $request, $id)
     {
         $produk = Barang::find($id);
-        // dd($produk);
         $kategori = $produk->barang_kategori;
         $update_produk = $produk->update([
+            'barang_nama' => $request->barang_nama,
             'barang_nama' => $request->barang_nama,
             'barang_kategori' => $request->barang_kategori,
             'barang_ukuran' => $request->barang_ukuran,
@@ -52,7 +52,10 @@ class ProdukController extends Controller
         $users = Login::find($session_users->id);
         $produk = new Barang;
         $kategori = $request->kategori;
+        $random_kode = "BRG" . Str::random(5);
+        $kode_produk = strtoupper($random_kode);
         $save_produk = $produk->create([
+            'barang_kode' => $kode_produk,
             'barang_nama' => $request->barang_nama,
             'barang_kategori' => $request->barang_kategori,
             'barang_ukuran' => $request->barang_ukuran,
