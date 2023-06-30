@@ -49,14 +49,7 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
                         <span>Kelola User</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('dashboard') }}">Daftar User</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i>
-                        <span>Laporan</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('laporan-penjualan') }}">Laporan Penjualan</a></li>
+                        <li><a href="{{ route('daftar-user') }}">Daftar User</a></li>
                     </ul>
                 </li>
         </aside>

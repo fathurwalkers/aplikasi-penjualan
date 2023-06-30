@@ -23,6 +23,14 @@ class BackController extends Controller
         ]);
     }
 
+    public function daftar_users()
+    {
+        $all_users = Login::all();
+        return view('users.daftar-users', [
+            'all_users' => $all_users
+        ]);
+    }
+
     public function login()
     {
         $users = session('data_login');

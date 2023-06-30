@@ -10,6 +10,11 @@ Route::post('/logout', [BackController::class, 'logout'])->name('logout');
 
 Route::get('/', fn () => redirect()->route('dashboard'));
 
+Route::group(['prefix' => '/users', 'middleware' => 'ceklogin'], function () {
+    Route::get('/', fn () => redirect()->route('daftar-users'));
+    Route::get('/daftar-users', [BackController::class, 'daftar_users'])->name('daftar-users');
+});
+
 Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function () {
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
 
