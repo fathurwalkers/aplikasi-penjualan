@@ -13,6 +13,7 @@ Route::get('/', fn () => redirect()->route('dashboard'));
 Route::group(['prefix' => '/users', 'middleware' => 'ceklogin'], function () {
     Route::get('/', fn () => redirect()->route('daftar-users'));
     Route::get('/daftar-users', [BackController::class, 'daftar_users'])->name('daftar-users');
+    Route::post('/hapus-user/{id}', [BackController::class, 'hapus_user'])->name('hapus-user');
 });
 
 Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function () {
