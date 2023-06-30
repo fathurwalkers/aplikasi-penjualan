@@ -152,16 +152,16 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Produk</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus User</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('hapus-produk', $item->id) }}" method="POST">
+                                                <form action="{{ route('hapus-user', $item->id) }}" method="POST">
                                                     @csrf
                                                     <div class="modal-body">
-                                                        Apakah anda yakin ingin menghapus data produk ini?
+                                                        Apakah anda yakin ingin menghapus data user ini?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

@@ -209,5 +209,34 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
+        // GENERATE BANYAK USERS
+        $faker = Faker::create('id_ID');
+        for ($i=1; $i < 50; $i++) {
+            $token = Str::random(16);
+            $role = "user";
+            $hashPassword = Hash::make('user1234', [
+                'rounds' => 12,
+            ]);
+            $hashToken = Hash::make($token, [
+                'rounds' => 12,
+            ]);
+            $username = $faker->username();
+            $name = $faker->name();
+            $email = $faker->email();
+            $phoneNumber = $faker->phoneNumber();
+            Login::create([
+                'login_nama' => $name,
+                'login_username' => $username,
+                'login_password' => $hashPassword,
+                'login_email' => $email,
+                'login_telepon' => $phoneNumber,
+                'login_token' => $hashToken,
+                'login_level' => $role,
+                'login_status' => "verified",
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
     }
 }
