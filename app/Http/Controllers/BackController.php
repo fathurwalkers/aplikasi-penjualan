@@ -46,7 +46,7 @@ class BackController extends Controller
         $users = session('data_login');
         $request->session()->forget(['data_login']);
         $request->session()->flush();
-        return redirect()->route('login')->with('status', 'Anda telah logout!');
+        return redirect()->route('login')->with('status', 'Anda telah logout.');
     }
 
     public function postlogin(Request $request)
