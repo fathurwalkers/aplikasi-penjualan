@@ -30,7 +30,7 @@
                     </p>
 
                     <div class="row">
-                        <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
                                 <label for="kategori">
                                     <h6>Kategori</h6>
@@ -42,26 +42,40 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="bulan">
-                                    <h6>Bulan</h6>
+                                <label for="tahun">
+                                    <h6>Tahun</h6>
                                 </label>
-                                <select class="form-control" id="bulan" name="bulan">
-                                    @foreach ($array_bulan as $item)
-                                        <option value="{{ $item }}">{{ $item }}</option>
+                                <input type="number" class="form-control" id="tahun"
+                                    placeholder="Masukkan periode tahun..." name="tahun">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="bulan_awal">
+                                    <h6>Bulan Awal</h6>
+                                </label>
+                                <select class="form-control" id="bulan_awal" name="bulan_awal">
+                                    @foreach ($array_bulan as $item1)
+                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="periode">
-                                    <h6>Periode</h6>
+                                <label for="bulan_akhir">
+                                    <h6>Bulan Akhir</h6>
                                 </label>
-                                <select class="form-control" id="periode" name="periode">
-                                    @foreach ($array_periode as $item1)
-                                        <option value="{{ $item1 }}">{{ $item1 }}</option>
+                                <select class="form-control" id="bulan_akhir" name="bulan_akhir">
+                                    @foreach ($array_bulan as $item1)
+                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

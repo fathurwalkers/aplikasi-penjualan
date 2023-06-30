@@ -212,7 +212,7 @@ class DatabaseSeeder extends Seeder
 
         // GENERATE BANYAK USERS
         $faker = Faker::create('id_ID');
-        for ($i=1; $i < 50; $i++) {
+        for ($i=1; $i < 10; $i++) {
             $token = Str::random(16);
             $role = "user";
             $hashPassword = Hash::make('user1234', [

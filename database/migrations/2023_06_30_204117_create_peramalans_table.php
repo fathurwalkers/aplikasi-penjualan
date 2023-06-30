@@ -8,13 +8,13 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('penjualan', function (Blueprint $table) {
+        Schema::create('peramalan', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('penjualan_tahun')->nullable();
-            $table->integer('penjualan_jumlah')->nullable();
-            $table->date('penjualan_bulan_awal')->nullable();
-            $table->date('penjualan_bulan_akhir')->nullable();
+            $table->string('peramalan_periode')->nullable();
+            $table->string('peramalan_aktual')->nullable();
+            $table->string('peramalan_ramal')->nullable();
+            $table->string('peramalan_mape')->nullable();
 
             $table->unsignedBigInteger('barang_id')->nullable()->default(null);
             $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
@@ -25,6 +25,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('penjualan');
+        Schema::dropIfExists('peramalan');
     }
 };
