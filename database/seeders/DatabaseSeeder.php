@@ -50,7 +50,10 @@ class DatabaseSeeder extends Seeder
         foreach ($array_barang_sd as $item1) {
             foreach ($array_ukuran as $item2) {
                 $produk = new Barang;
+                $random_kode = "BRG" . Str::random(5);
+                $kode_produk = strtoupper($random_kode);
                 $produk->create([
+                    'barang_kode' => $kode_produk,
                     'barang_nama' => $item1,
                     'barang_kategori' => "SD",
                     'barang_ukuran' => $item2,
@@ -62,7 +65,10 @@ class DatabaseSeeder extends Seeder
         foreach ($array_barang_smp as $item1) {
             foreach ($array_ukuran as $item2) {
                 $produk = new Barang;
+                $random_kode = "BRG" . Str::random(5);
+                $kode_produk = strtoupper($random_kode);
                 $produk->create([
+                    'barang_kode' => $kode_produk,
                     'barang_nama' => $item1,
                     'barang_kategori' => "SMP",
                     'barang_ukuran' => $item2,
@@ -74,7 +80,10 @@ class DatabaseSeeder extends Seeder
         foreach ($array_barang_sma as $item1) {
             foreach ($array_ukuran as $item2) {
                 $produk = new Barang;
+                $random_kode = "BRG" . Str::random(5);
+                $kode_produk = strtoupper($random_kode);
                 $produk->create([
+                    'barang_kode' => $kode_produk,
                     'barang_nama' => $item1,
                     'barang_kategori' => "SMA",
                     'barang_ukuran' => $item2,
