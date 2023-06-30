@@ -34,12 +34,36 @@ class BackController extends Controller
     public function hapus_user(Request $request, $id)
     {
         $login = Login::find($id);
-        $nama_users = $login->login_nama;
         $hapus_users = $login->forceDelete();
         if ($hapus_users == true) {
-            return redirect()->route('daftar-users', $nama_users)->with('status', 'User telah berhasil dihapus.');
+            return redirect()->route('daftar-users')->with('status', 'User telah berhasil dihapus.');
         } else {
-            return redirect()->route('daftar-users', $nama_users)->with('status', 'Terjadi kesalahan. Data tidak dapat dihapus.');
+            return redirect()->route('daftar-users')->with('status', 'Terjadi kesalahan. Data tidak dapat dihapus.');
+        }
+    }
+
+    public function update_produk(Request $request, $id)
+    {
+        $split_username = str_split($request->login_username);
+        dd($split_username);
+
+        $login_username = $request->login_username;
+        $login_nama = $request->login_nama;
+        $login_telepon = $request->login_telepon;
+        $login_email = $request->login_email;
+        $login = Login::find($id);
+        $update_users = $login->update([
+            'login_nama' => $login_nama,
+            'login_username' => $login_username,
+            'login_password' => $login_password,
+            'login_email' => $login_email,
+            'login_telepon' => $login_telepon,
+            'updated_at' => now()
+        ]);
+        if ($update_users == true) {
+            return redirect()->route('daftar-users')->with('status', 'Produk telah berhasil diubah.');
+        } else {
+            return redirect()->route('daftar-users')->with('status', 'Terjadi kesalahan. Data tidak dapat diubah.');
         }
     }
 

@@ -76,61 +76,62 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('update-produk', $item->id) }}" method="post">
+                                                <form action="{{ route('update-user', $item->id) }}" method="post">
                                                     @csrf
                                                     <div class="modal-body">
                                                         <p class="text-dark">
-                                                            Silahkan mengisikan data produk yang akan diubah.
+                                                            Silahkan mengisikan data user yang akan diubah.
                                                         </p>
 
                                                         <div class="row">
-                                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
                                                                 <div class="form-group">
-                                                                    <label for="barang_nama">
-                                                                        <h6>Nama Produk</h6>
+                                                                    <label for="login_nama">
+                                                                        <h6>Nama User</h6>
                                                                     </label>
                                                                     <input type="text" class="form-control"
-                                                                        id="barang_nama"
+                                                                        id="login_nama"
                                                                         placeholder="Masukkan nama produk baru..."
-                                                                        name="barang_nama"
-                                                                        value="{{ $item->barang_nama }}">
+                                                                        name="login_nama" value="{{ $item->login_nama }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="login_username">
+                                                                        <h6>Username</h6>
+                                                                    </label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="login_username"
+                                                                        placeholder="Masukkan nama produk baru..."
+                                                                        name="login_username"
+                                                                        value="{{ $item->login_username }}">
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="row">
-                                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
                                                                 <div class="form-group">
-                                                                    <label for="barang_kategori">
-                                                                        <h6>Kategori</h6>
+                                                                    <label for="login_email">
+                                                                        <h6>Email</h6>
                                                                     </label>
-                                                                    <select class="form-control" id="barang_kategori"
-                                                                        name="barang_kategori">
-                                                                        <option default
-                                                                            value="{{ $item->barang_kategori }}">
-                                                                            {{ $item->barang_kategori }}</option>
-                                                                        <option value="SD">SD</option>
-                                                                        <option value="SMP">SMP</option>
-                                                                        <option value="SMA">SMA</option>
-                                                                    </select>
+                                                                    <input type="text" class="form-control"
+                                                                        id="login_email"
+                                                                        placeholder="Masukkan nama produk baru..."
+                                                                        name="login_email"
+                                                                        value="{{ $item->login_email }}">
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
                                                                 <div class="form-group">
-                                                                    <label for="barang_ukuran">
-                                                                        <h6>Ukuran</h6>
+                                                                    <label for="login_telepon">
+                                                                        <h6>No. HP / Telepon</h6>
                                                                     </label>
-                                                                    <select class="form-control" id="barang_ukuran"
-                                                                        name="barang_ukuran">
-                                                                        <option default value="{{ $item->barang_ukuran }}">
-                                                                            {{ $item->barang_ukuran }}</option>
-                                                                        <option value="S">S</option>
-                                                                        <option value="M">M</option>
-                                                                        <option value="L">L</option>
-                                                                        <option value="XL">XL</option>
-                                                                        <option value="XXL">XXL</option>
-                                                                    </select>
+                                                                    <input type="number" class="form-control"
+                                                                        id="login_telepon"
+                                                                        placeholder="Masukkan nama produk baru..."
+                                                                        name="login_telepon"
+                                                                        value="{{ $item->login_telepon }}">
                                                                 </div>
                                                             </div>
                                                         </div>
