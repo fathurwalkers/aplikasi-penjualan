@@ -45,13 +45,15 @@
                         <li><a class="nav-link" href="{{ route('dashboard') }}">Hasil Peramalan</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
-                        <span>Kelola User</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('daftar-users') }}">Daftar User</a></li>
-                    </ul>
-                </li>
+                @if ($users->login_level == 'admin')
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
+                            <span>Kelola User</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('daftar-users') }}">Daftar User</a></li>
+                        </ul>
+                    </li>
+                @endif
         </aside>
     </div>
 </div>

@@ -25,6 +25,8 @@ class BackController extends Controller
 
     public function daftar_users()
     {
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
         $all_users = Login::where('login_level', 'user')->get();
         return view('users.daftar-users', [
             'all_users' => $all_users
@@ -42,10 +44,15 @@ class BackController extends Controller
         }
     }
 
-    public function update_produk(Request $request, $id)
+    public function update_user(Request $request, $id)
     {
         $split_username = str_split($request->login_username);
-        dd($split_username);
+
+        foreach ($split_username as $item) {
+            if ($item == ' ' || $item == '/' || $item == '&') {
+                return redirect()->route('daftar-users')->with('status', 'Terjadi kesalahan. Username tidak dapat mengandung karakter spesial seperti spasi, / dan &');
+            }
+        }
 
         $login_username = $request->login_username;
         $login_nama = $request->login_nama;
@@ -55,13 +62,12 @@ class BackController extends Controller
         $update_users = $login->update([
             'login_nama' => $login_nama,
             'login_username' => $login_username,
-            'login_password' => $login_password,
             'login_email' => $login_email,
             'login_telepon' => $login_telepon,
             'updated_at' => now()
         ]);
         if ($update_users == true) {
-            return redirect()->route('daftar-users')->with('status', 'Produk telah berhasil diubah.');
+            return redirect()->route('daftar-users')->with('status', 'User telah berhasil diubah.');
         } else {
             return redirect()->route('daftar-users')->with('status', 'Terjadi kesalahan. Data tidak dapat diubah.');
         }
