@@ -42,7 +42,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('perhitungan-peramalan') }}">Perhitungan Peramalan</a>
                         </li>
-                        <li><a class="nav-link" href="{{ route('dashboard') }}">Hasil Peramalan</a></li>
+                        <li><a class="nav-link" href="{{ route('hasil-peramalan') }}">Hasil Peramalan</a></li>
                     </ul>
                 </li>
                 @if ($users->login_level == 'admin')

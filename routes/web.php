@@ -22,6 +22,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
 
     Route::group(['prefix' => '/peramalan'], function () {
         Route::get('/perhitungan-peramalan', [PeramalanController::class, 'perhitungan_peramalan'])->name('perhitungan-peramalan');
+        Route::post('/hasil-peramalan', [PeramalanController::class, 'hasil_peramalan'])->name('hasil-peramalan');
     });
 
     Route::group(['prefix' => '/laporan'], function () {

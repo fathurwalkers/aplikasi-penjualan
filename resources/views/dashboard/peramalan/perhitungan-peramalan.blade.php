@@ -22,21 +22,23 @@
         <div class="card-body">
             <div class="container">
 
-                <form action="" method="post">
+                <form action="{{ route('hasil-peramalan') }}" method="post">
                     @csrf
 
                     <p class="text-dark">
                         Silahkan masukkan informasi terkait untuk melakukan perhitungan peramalan penjualan.
                     </p>
 
+                    <input type="hidden" name="id_produk" id="id_produk">
+
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
-                                <label for="produk_nama">
-                                    <h6>Produk yang diramal</h6>
+                                <label for="produk_kode">
+                                    <h6>Produk yang Akan di Ramal</h6>
                                 </label>
-                                <input type="text" class="form-control" id="produk_nama"
-                                    placeholder="Masukkan keterangan pengaduan..." name="produk_nama">
+                                <input type="text" class="form-control" id="produk_kode" placeholder="..."
+                                    name="produk_kode" disabled>
                             </div>
                         </div>
                     </div>
@@ -44,20 +46,20 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="produk_nama">
-                                    <h6>Periode Sebelumnya</h6>
+                                <label for="tahun">
+                                    <h6>Tahun</h6>
                                 </label>
-                                <input type="text" class="form-control" id="produk_nama"
-                                    placeholder="Masukkan keterangan pengaduan..." name="produk_nama">
+                                <input type="number" class="form-control" id="tahun"
+                                    placeholder="Masukkan tahun periode" name="tahun">
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="produk_nama">
-                                    <h6>Jumlah Periode Peramalan</h6>
+                                <label for="periode">
+                                    <h6>Jumlah Periode</h6>
                                 </label>
-                                <input type="text" class="form-control" id="produk_nama"
-                                    placeholder="Masukkan keterangan pengaduan..." name="produk_nama">
+                                <input type="number" class="form-control" id="periode"
+                                    placeholder="Masukkan jumlah periode" name="periode">
                             </div>
                         </div>
                     </div>
@@ -65,20 +67,27 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="produk_nama">
-                                    <h6>Tanggal Awal</h6>
+                                <label for="bulan_awal">
+                                    <h6>Bulan Awal</h6>
                                 </label>
-                                <input type="text" class="form-control" id="produk_nama"
-                                    placeholder="Masukkan keterangan pengaduan..." name="produk_nama">
+                                <select class="form-control" id="bulan_awal" name="bulan_awal">
+                                    @foreach ($array_bulan as $item1)
+                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="produk_nama">
-                                    <h6>Tanggal Akhir</h6>
+                                <label for="bulan_akhir">
+                                    <h6>Bulan Akhir</h6>
                                 </label>
-                                <input type="text" class="form-control" id="produk_nama"
-                                    placeholder="Masukkan keterangan pengaduan..." name="produk_nama">
+                                <select class="form-control" id="bulan_akhir" name="bulan_akhir">
+                                    @foreach ($array_bulan as $item1)
+                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -111,28 +120,30 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Stok Barang</th>
+                                    <th>Kode Produk</th>
+                                    <th>Nama Produk</th>
+                                    <th>Kategori Produk</th>
+                                    <th>Ukuran Produk</th>
                                     <th>Kelola</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <td class="text-center text-dark">#</td>
-                                    <td class="text-center text-dark">BARANG23929</td>
-                                    <td class="text-center text-dark">Barang 1</td>
-                                    <td class="text-center text-dark">23</td>
-                                    <td class="text-center text-dark">
-                                        <button class="btn btn-sm btn-info mr-1" type="button">
-                                            Ubah
-                                        </button>
-                                        <button class="btn btn-sm btn-danger mr-1" type="button">
-                                            Hapus
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach ($produk as $item)
+                                    <tr>
+                                        <td class="text-center text-dark">{{ $loop->iteration }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_kode }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_nama }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_kategori }}</td>
+                                        <td class="text-center text-dark">{{ $item->barang_ukuran }}</td>
+                                        <td class="text-center text-dark">
+                                            <button class="btn btn-sm btn-info mr-1" type="button"
+                                                onclick="setproduk('{{ $item->id }}','{{ $item->barang_nama }}','{{ $item->barang_kode }}')">
+                                                Pilih
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
@@ -146,6 +157,11 @@
 @push('js')
     <script src="{{ asset('datatables') }}/datatables.min.js"></script>
     <script>
+        function setproduk(id, nama, kode) {
+            $('#produk_kode').val(kode);
+            $('#id_produk').val(id);
+        }
+
         $(document).ready(function() {
             $('#example').DataTable();
         });
