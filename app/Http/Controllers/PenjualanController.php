@@ -24,8 +24,6 @@ class PenjualanController extends Controller
     public function cek_penjualan()
     {
         $array_bulan = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        // $array_bulan = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-        // $array_periode = [1,2,3,4];
         $array_kategori = ['SD', 'SMP', 'SMA'];
         return view('dashboard.penjualan.cek-penjualan', [
             'array_bulan' => $array_bulan,
@@ -63,7 +61,6 @@ class PenjualanController extends Controller
         $faker = Faker::create('id_ID');
         $produk = Barang::all();
         foreach ($produk as $item) {
-            // $array_bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             $array_bulan = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
             foreach ($array_bulan as $item1) {
                 $penjualan = new Penjualan;
@@ -92,7 +89,6 @@ class PenjualanController extends Controller
         $faker = Faker::create('id_ID');
         $produk = Barang::all();
         foreach ($produk as $item) {
-            // $array_bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             $array_bulan = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
             foreach ($array_bulan as $item1) {
                 $penjualan = new Penjualan;
@@ -121,7 +117,6 @@ class PenjualanController extends Controller
         $faker = Faker::create('id_ID');
         $produk = Barang::all();
         foreach ($produk as $item) {
-            // $array_bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             $array_bulan = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
             foreach ($array_bulan as $item1) {
                 $penjualan = new Penjualan;
@@ -150,7 +145,6 @@ class PenjualanController extends Controller
         $faker = Faker::create('id_ID');
         $produk = Barang::all();
         foreach ($produk as $item) {
-            // $array_bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             $array_bulan = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
             foreach ($array_bulan as $item1) {
                 $penjualan = new Penjualan;
