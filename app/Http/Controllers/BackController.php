@@ -27,7 +27,7 @@ class BackController extends Controller
     {
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
-        $all_users = Login::where('login_level', 'user')->get();
+        $all_users = Login::whereNotIn('id', [$users->id])->get();
         return view('users.daftar-users', [
             'all_users' => $all_users
         ]);

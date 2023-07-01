@@ -36,16 +36,17 @@
                         <li><a class="nav-link" href="{{ route('daftar-produk', 'SMA') }}">Produk SMA</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
-                        <span>Peramalan</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('perhitungan-peramalan') }}">Perhitungan Peramalan</a>
-                        </li>
-                        {{-- <li><a class="nav-link" href="{{ route('hasil-peramalan') }}">Hasil Peramalan</a></li> --}}
-                    </ul>
-                </li>
                 @if ($users->login_level == 'admin')
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
+                            <span>Peramalan</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="{{ route('perhitungan-peramalan') }}">Perhitungan
+                                    Peramalan</a>
+                            </li>
+                            {{-- <li><a class="nav-link" href="{{ route('hasil-peramalan') }}">Hasil Peramalan</a></li> --}}
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
                             <span>Kelola User</span></a>
