@@ -22,10 +22,80 @@
         <div class="card-body">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <h5 class="my-auto text-dark">Daftar Barang</h5>
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <h5 class="my-auto text-dark">Daftar User</h5>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 ml-auto">
+                        <button type="button" class="btn btn-md btn-primary d-flex my-auto ml-auto" data-toggle="modal"
+                            data-target="#modaltambah">
+                            Tambah User
+                        </button>
                     </div>
                 </div>
+
+                <!-- Modal Ubah -->
+                <div class="modal fade" id="modaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Produk</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('post-register') }}" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <p class="text-dark">
+                                        Silahkan mengisikan data user yang akan ditambah.
+                                    </p>
+
+                                    <div class="form-group">
+                                        <label for="login_nama">Nama Lengkap</label>
+                                        <input name="login_nama" id="login_nama" type="text" class="form-control"
+                                            value="{{ old('login_nama') }}" autofocus required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="login_email">Email</label>
+                                        <input name="login_email" id="login_email" type="email"
+                                            value="{{ old('login_email') }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="login_telepon">No. Telepon / HP</label>
+                                        <input name="login_telepon" id="login_telepon" type="text" class="form-control"
+                                            value="{{ old('login_telepon') }}" required>
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="form-group">
+                                        <label for="login_username">Username</label>
+                                        <input name="login_username" id="login_username" type="text" class="form-control"
+                                            value="{{ old('login_username') }}" autofocus required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="login_password">Password</label>
+                                        <input name="login_password" id="login_password" type="password"
+                                            class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="login_password2">Konfirmasi Password</label>
+                                        <input name="login_password2" id="login_password2" type="password"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                                    <button type="submit" class="btn btn-danger">Tambah Data</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Modal Ubah -->
+
                 <hr />
                 <div class="row">
                     <div class="table-responsive">
@@ -65,8 +135,8 @@
 
 
                                     <!-- Modal Ubah -->
-                                    <div class="modal fade" id="modalubah{{ $item->id }}" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modalubah{{ $item->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -92,7 +162,8 @@
                                                                     <input type="text" class="form-control"
                                                                         id="login_nama"
                                                                         placeholder="Masukkan nama produk baru..."
-                                                                        name="login_nama" value="{{ $item->login_nama }}">
+                                                                        name="login_nama"
+                                                                        value="{{ $item->login_nama }}">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6 col-md-6 col-lg-6">

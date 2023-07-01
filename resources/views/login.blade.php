@@ -61,7 +61,7 @@
                                     </button>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    Don't have an account? <a href="register.html">Create One</a>
+                                    Belum punya akun? <a href="{{ route('register') }}">Buat Sekarang!</a>
                                 </div>
                             </form>
                         </div>
