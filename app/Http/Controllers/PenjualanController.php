@@ -69,10 +69,12 @@ class PenjualanController extends Controller
 
     public function data_penjualan(Request $request)
     {
+        $tahun = $request->tahun;
         $barangKategori = $request->kategori;
         $bulan_awal = $request->bulan_awal;
         $bulan_akhir = $request->bulan_akhir;
-        $tahun = $request->tahun;
+        $make_bulan_awal = $tahun . "-" . $bulan_awal . "-01";
+        $make_bulan_akhir = $tahun . "-" . $bulan_akhir . "-01";
         if ($bulan_awal == $bulan_akhir) {
             $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', $bulan_awal)->whereHas('barang', function ($query) use ($barangKategori) {
                 $query->where('barang_kategori', $barangKategori);
@@ -83,11 +85,13 @@ class PenjualanController extends Controller
             })->get();
         }
         $index_count = 1;
+        //  dump($penjualan);
+        // die;
         return view('dashboard.penjualan.data-penjualan', [
             'penjualan' => $penjualan,
             'index_count' => $index_count,
-            'bulan_awal' => $bulan_awal,
-            'bulan_akhir' => $bulan_akhir,
+            'bulan_awal' => $make_bulan_awal,
+            'bulan_akhir' => $make_bulan_akhir,
             'tahun' => $tahun,
         ]);
     }

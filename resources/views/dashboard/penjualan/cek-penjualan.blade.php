@@ -72,8 +72,8 @@
                                     <h6>Bulan Akhir</h6>
                                 </label>
                                 <select class="form-control" id="bulan_akhir" name="bulan_akhir">
-                                    @foreach ($array_bulan as $item1)
-                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}
+                                    @foreach ($array_bulan as $item2)
+                                        <option value="{{ date('m', strtotime($item2)) }}">{{ $item2 }}
                                         </option>
                                     @endforeach
                                 </select>

@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <h5 class="my-auto text-dark">Penjualan - Data Penjualan Bulan {{ date('m', strtotime($bulan_awal)) }} -
-                    {{ date('m', strtotime($bulan_akhir)) }}
+                <h5 class="my-auto text-dark">Penjualan - Data Penjualan Bulan {{ date('M/d/Y', strtotime($bulan_awal)) }} -
+                    {{ date('M/d/Y', strtotime($bulan_akhir)) }}
                     Tahun
                     {{ $tahun }}</h5>
             </div>
