@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Penjualan, Peramalan, Barang};
+use App\Models\{Penjualan, Barang};
 
 class PeramalanController extends Controller
 {
@@ -43,8 +43,22 @@ class PeramalanController extends Controller
 
             $hasilMovingAverage[$i] = $movingAverage;
         }
-        dump($hasilMovingAverage);
-        dump($penjualan);
-        die;
+
+        $totalMAPE = 0;
+        $totalDataPenjualan = $totalData;
+
+        for ($i = $periode; $i < $totalDataPenjualan; $i++) {
+            $nilaiAktual = $penjualan[$i]->penjualan_jumlah;
+            $nilaiRamalan = $hasilMovingAverage[$i];
+
+            $mape = abs(($nilaiAktual - $nilaiRamalan) / $nilaiAktual) * 100;
+            $totalMAPE += $mape;
+        }
+        $maper = $totalMAPE / ($totalDataPenjualan - $periode);
+        return view('dashboard.peramalan.hasil-peramalan', [
+            'hasilMovingAverage' => $hasilMovingAverage,
+            'penjualan' => $penjualan,
+            'maper' => $maper
+        ]);
     }
 }

@@ -12,13 +12,49 @@ class PenjualanController extends Controller
 {
     public function daftar_penjualan($kategori)
     {
+        $array_bulan = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $penjualan = Penjualan::whereHas('barang', function ($query) use ($kategori) {
             $query->where('barang_kategori', $kategori);
         })->get();
+        $produk = Barang::all();
         return view('dashboard.penjualan.daftar-penjualan', [
             'penjualan' => $penjualan,
-            'kategori' => $kategori
+            'array_bulan' => $array_bulan,
+            'produk' => $produk,
         ]);
+    }
+
+    public function tambah_penjualan(Request $request)
+    {
+        $req_bulan_awal = $request->bulan_awal;
+        $req_bulan_akhir = $request->bulan_akhir;
+        $barang_id = intval($request->id_produk);
+
+        $barang = Barang::find($barang_id);
+        $kategori = $barang->barang_kategori;
+
+        $tahun = $request->tahun;
+        $jumlah_penjualan = $request->jumlah_penjualan;
+
+        $bulan_awal = $tahun . '-' . $req_bulan_awal . '-01';
+        $bulan_akhir = $tahun . '-' . $req_bulan_akhir . '-01';
+
+        $penjualan = new Penjualan;
+        $save_penjualan = $penjualan->create([
+            'penjualan_tahun' => intval($tahun),
+            'penjualan_jumlah' => intval($jumlah_penjualan),
+            'penjualan_bulan_awal' => date("Y-m-d", strtotime($bulan_awal)),
+            'penjualan_bulan_akhir' => date("Y-m-d", strtotime($bulan_akhir)),
+            'barang_id' => $barang->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        $save_penjualan->save();
+        if ($save_penjualan == true) {
+            return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Penjualan telah berhasil dibuat.');
+        } else {
+            return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat dibuat.');
+        }
     }
 
     public function cek_penjualan()
