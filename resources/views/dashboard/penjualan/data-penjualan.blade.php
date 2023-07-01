@@ -13,8 +13,11 @@
                     Tahun
                     {{ $tahun }}</h5>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-6">
-
+            <div class="col-sm-6 col-md-6 col-lg-6 ml-auto">
+                <button class="btn btn-md btn-primary d-flex my-auto ml-auto"
+                    onclick="location.href = '{{ route('print-laporan-penjualan') }}'">
+                    Cetak Laporan Penjualan
+                </button>
             </div>
         </div>
     </div>

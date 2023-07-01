@@ -57,13 +57,31 @@ class PenjualanController extends Controller
         }
     }
 
-    public function cek_penjualan()
+    public function cek_penjualan(Request $request)
     {
+        $session_users = session('data_login');
+        $session_penjualan = session('penjualan');
+
+        if ($session_penjualan !== null) {
+            $request->session()->forget(['penjualan', 'bulan_awal', 'bulan_akhir']);
+        }
         $array_bulan = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $array_kategori = ['SD', 'SMP', 'SMA'];
         return view('dashboard.penjualan.cek-penjualan', [
             'array_bulan' => $array_bulan,
             'array_kategori' => $array_kategori
+        ]);
+    }
+
+    public function print_laporan_penjualan()
+    {
+        $penjualan = session('penjualan');
+        $bulan_awal = session('bulan_awal');
+        $bulan_akhir = session('bulan_akhir');
+        return view('dashboard.penjualan.print-laporan-penjualan', [
+            'penjualan' => $penjualan,
+            'bulan_awal' => $bulan_awal,
+            'bulan_akhir' => $bulan_akhir,
         ]);
     }
 
@@ -79,14 +97,18 @@ class PenjualanController extends Controller
             $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', $bulan_awal)->whereHas('barang', function ($query) use ($barangKategori) {
                 $query->where('barang_kategori', $barangKategori);
             })->get();
+            $session_penjualan = session(['penjualan' => $penjualan]);
+            $session_bulan_awal = session(['bulan_awal' => $make_bulan_awal]);
+            $session_bulan_akhir = session(['bulan_akhir' => $make_bulan_akhir]);
         } else {
             $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barangKategori) {
                 $query->where('barang_kategori', $barangKategori);
             })->get();
+            $session_penjualan = session(['penjualan' => $penjualan]);
+            $session_bulan_awal = session(['bulan_awal' => $make_bulan_awal]);
+            $session_bulan_akhir = session(['bulan_akhir' => $make_bulan_akhir]);
         }
         $index_count = 1;
-        //  dump($penjualan);
-        // die;
         return view('dashboard.penjualan.data-penjualan', [
             'penjualan' => $penjualan,
             'index_count' => $index_count,
