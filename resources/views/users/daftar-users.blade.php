@@ -107,7 +107,7 @@
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>No. HP / Telepon</th>
-                                    <th>Status</th>
+                                    <th>Role</th>
                                     <th>Kelola</th>
                                 </tr>
                             </thead>
@@ -120,7 +120,21 @@
                                         <td class="text-center text-dark">{{ $item->login_username }}</td>
                                         <td class="text-center text-dark">{{ $item->login_email }}</td>
                                         <td class="text-center text-dark">{{ $item->login_telepon }}</td>
-                                        <td class="text-center text-dark">{{ $item->login_status }}</td>
+                                        <td class="text-center text-dark">
+                                            @switch($item->login_level)
+                                                @case('admin')
+                                                    <button type="button" class="badge badge-sm badge-warning btn-outline-warning">
+                                                        ADMIN
+                                                    </button>
+                                                @break
+
+                                                @case('user')
+                                                    <button type="button" class="badge badge-sm badge-info btn-outline-info">
+                                                        STAFF
+                                                    </button>
+                                                @break
+                                            @endswitch
+                                        </td>
                                         <td class="text-center text-dark">
                                             <button class="btn btn-sm btn-info mr-1" type="button" data-toggle="modal"
                                                 data-target="#modalubah{{ $item->id }}">
