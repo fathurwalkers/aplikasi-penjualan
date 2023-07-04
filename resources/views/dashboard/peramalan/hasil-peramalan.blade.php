@@ -10,8 +10,11 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <h5 class="my-auto text-dark">Peramalan - Hasil Perhitungan Simple Moving Average</h5>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-6">
-
+            <div class="col-sm-6 col-md-6 col-lg-6 ml-auto">
+                <button class="btn btn-md btn-primary d-flex my-auto ml-auto"
+                    onclick="location.href = '{{ route('print-peramalan-penjualan') }}'">
+                    Cetak Hasil Peramalan
+                </button>
             </div>
         </div>
     </div>

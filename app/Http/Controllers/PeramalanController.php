@@ -55,10 +55,25 @@ class PeramalanController extends Controller
             $totalMAPE += $mape;
         }
         $maper = $totalMAPE / ($totalDataPenjualan - $periode);
+        $session_hasilmovingaverage = session(['hasilMovingAverage' => $hasilMovingAverage]);
+        $session_penjualan = session(['penjualan' => $penjualan]);
+        $session_maper = session(['maper' => $maper]);
         return view('dashboard.peramalan.hasil-peramalan', [
             'hasilMovingAverage' => $hasilMovingAverage,
             'penjualan' => $penjualan,
             'maper' => $maper
+        ]);
+    }
+
+    public function print_peramalan_penjualan()
+    {
+        $penjualan = session('penjualan');
+        $hasilMovingAverage = session('hasilMovingAverage');
+        $maper = session('maper');
+        return view('dashboard.peramalan.print-laporan-peramalan', [
+            'penjualan' => $penjualan,
+            'hasilMovingAverage' => $hasilMovingAverage,
+            'maper' => $maper,
         ]);
     }
 }

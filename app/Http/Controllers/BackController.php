@@ -117,7 +117,11 @@ class BackController extends Controller
         ]);
         $cek_save_login = $save_login->save();
         if ($cek_save_login == true) {
-            return redirect()->route('login')->with('status', 'Berhasil melakukan registrasi!');
+            if ($role == null) {
+                return redirect()->route('login')->with('status', 'Berhasil melakukan registrasi!');
+            } else {
+                return redirect()->route('daftar-users')->with('status', 'Berhasil membuat data user baru.');
+            }
         } else {
             return redirect()->route('register')->with('status', 'Maaf, pendaftaran anda gagal, silahkan mencoba kembali.');
         }
