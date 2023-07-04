@@ -79,6 +79,12 @@ class BackController extends Controller
             'login_username'            => 'required',
             'login_password'            => 'required',
         ]);
+        $role = $request->role;
+        if ($role == null) {
+            $login_level = "user";
+        } else {
+            $login_level = $role;
+        }
         $login_nama = $request->login_nama;
         $login_telepon = $request->login_telepon;
         $login_email = $request->login_email;
@@ -95,7 +101,6 @@ class BackController extends Controller
         $login_token                            = Hash::make($token_raw, [
             'rounds' => 12,
         ]);
-        $login_level                            = "user";
         $login_status                           = "verified";
         $login = new login;
         $save_login = $login->create([

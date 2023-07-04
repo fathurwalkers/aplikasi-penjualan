@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <!-- Modal Ubah -->
+                <!-- Modal Tambah -->
                 <div class="modal fade" id="modaltambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -51,6 +51,13 @@
                                         Silahkan mengisikan data user yang akan ditambah.
                                     </p>
 
+                                    <div class="form-group">
+                                        <label for="role">Nama Lengkap</label>
+                                        <select class="form-control" id="role" name="role">
+                                            <option value="admin">Admin</option>
+                                            <option value="user">Staff</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label for="login_nama">Nama Lengkap</label>
                                         <input name="login_nama" id="login_nama" type="text" class="form-control"
@@ -94,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- END Modal Ubah -->
+                <!-- END Modal Tambah -->
 
                 <hr />
                 <div class="row">
@@ -123,7 +130,8 @@
                                         <td class="text-center text-dark">
                                             @switch($item->login_level)
                                                 @case('admin')
-                                                    <button type="button" class="badge badge-sm badge-warning btn-outline-warning">
+                                                    <button type="button"
+                                                        class="badge badge-sm badge-warning btn-outline-warning">
                                                         ADMIN
                                                     </button>
                                                 @break
