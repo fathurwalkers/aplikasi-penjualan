@@ -46,6 +46,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
         Route::get('/cek-penjualan', [PenjualanController::class, 'cek_penjualan'])->name('cek-penjualan');
         Route::post('/data-penjualan', [PenjualanController::class, 'data_penjualan'])->name('data-penjualan');
         Route::post('/tambah-penjualan', [PenjualanController::class, 'tambah_penjualan'])->name('tambah-penjualan');
+        Route::post('/update-penjualan/{id}', [PenjualanController::class, 'update_penjualan'])->name('update-penjualan');
+        Route::post('/hapus-penjualan/{id}', [PenjualanController::class, 'hapus_penjualan'])->name('hapus-penjualan');
         Route::get('/print-laporan-penjualan', [PenjualanController::class, 'print_laporan_penjualan'])->name('print-laporan-penjualan');
         Route::get('/generate-penjualan-1', [PenjualanController::class, 'generate_penjualan_1'])->name('generate-penjualan-1');
         Route::get('/generate-penjualan-2', [PenjualanController::class, 'generate_penjualan_2'])->name('generate-penjualan-2');

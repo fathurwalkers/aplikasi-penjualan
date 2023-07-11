@@ -79,8 +79,8 @@
                                     <h6>Bulan Awal</h6>
                                 </label>
                                 <select class="form-control" id="bulan_awal" name="bulan_awal" required>
-                                    @foreach ($array_bulan as $item1)
-                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}</option>
+                                    @foreach ($array_bulan as $bulanbulan)
+                                        <option value="{{ date('m', strtotime($bulanbulan)) }}">{{ $bulanbulan }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -91,8 +91,8 @@
                                     <h6>Bulan Akhir</h6>
                                 </label>
                                 <select class="form-control" id="bulan_akhir" name="bulan_akhir" required>
-                                    @foreach ($array_bulan as $item1)
-                                        <option value="{{ date('m', strtotime($item1)) }}">{{ $item1 }}
+                                    @foreach ($array_bulan as $tanggaltanggal)
+                                        <option value="{{ date('m', strtotime($tanggaltanggal)) }}">{{ $tanggaltanggal }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -136,6 +136,7 @@
                                     <th>Bulan Akhir</th>
                                     <th>Tahun</th>
                                     <th>Jumlah Penjualan</th>
+                                    <th>Kelola</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -154,7 +155,135 @@
                                         </td>
                                         <td class="text-center text-dark">{{ $item->penjualan_tahun }}</td>
                                         <td class="text-center text-dark">{{ $item->penjualan_jumlah }}</td>
+                                        <td class="text-center text-dark">
+                                            <button class="btn btn-sm btn-info mr-1" type="button" data-toggle="modal"
+                                                data-target="#modalubah{{ $item->id }}">
+                                                Ubah
+                                            </button>
+                                            <button class="btn btn-sm btn-danger mr-1" type="button" data-toggle="modal"
+                                                data-target="#modalhapus{{ $item->id }}">
+                                                Hapus
+                                            </button>
+                                        </td>
                                     </tr>
+
+                                    <!-- Modal Ubah -->
+                                    <div class="modal fade" id="modalubah{{ $item->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Produk</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('update-penjualan', $item->id) }}" method="post">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <p class="text-dark">
+                                                            Silahkan mengisikan data penjualan yang akan diubah.
+                                                        </p>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="tahun">
+                                                                        <h6>Tahun</h6>
+                                                                    </label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="tahun"
+                                                                        placeholder="Masukkan periode tahun..."
+                                                                        name="tahun" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="jumlah_penjualan">
+                                                                        <h6>Jumlah Penjualan</h6>
+                                                                    </label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="jumlah_penjualan"
+                                                                        placeholder="Masukkan jumlah penjualan..."
+                                                                        name="jumlah_penjualan" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="bulan_awal">
+                                                                        <h6>Bulan Awal</h6>
+                                                                    </label>
+                                                                    <select class="form-control" id="bulan_awal"
+                                                                        name="bulan_awal" required>
+                                                                        @foreach ($array_bulan as $item1)
+                                                                            <option
+                                                                                value="{{ date('m', strtotime($item1)) }}">
+                                                                                {{ $item1 }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="bulan_akhir">
+                                                                        <h6>Bulan Akhir</h6>
+                                                                    </label>
+                                                                    <select class="form-control" id="bulan_akhir"
+                                                                        name="bulan_akhir" required>
+                                                                        @foreach ($array_bulan as $item2)
+                                                                            <option
+                                                                                value="{{ date('m', strtotime($item2)) }}">
+                                                                                {{ $item2 }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batalkan</button>
+                                                        <button type="submit" class="btn btn-danger">Ubah Data</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Modal Ubah -->
+
+                                    <!-- Modal Hapus -->
+                                    <div class="modal fade" id="modalhapus{{ $item->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Penjualan
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('hapus-penjualan', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        Apakah anda yakin ingin menghapus data penjualan ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batalkan</button>
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Modal Hapus -->
                                 @endforeach
 
                             </tbody>

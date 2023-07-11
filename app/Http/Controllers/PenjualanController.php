@@ -20,8 +20,20 @@ class PenjualanController extends Controller
         return view('dashboard.penjualan.daftar-penjualan', [
             'penjualan' => $penjualan,
             'array_bulan' => $array_bulan,
+            'array_bulan1' => $array_bulan1,
+            'array_bulan2' => $array_bulan2,
             'produk' => $produk,
         ]);
+    }
+
+    public function hapus_penjualan(Request $request, $id)
+    {
+        dd($id);
+    }
+
+    public function update_penjualan(Request $request, $id)
+    {
+        dd($id);
     }
 
     public function tambah_penjualan(Request $request)
