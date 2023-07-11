@@ -17,9 +17,11 @@ class BackController extends Controller
     {
         $penjualan = Penjualan::all()->count();
         $produk = Barang::all()->count();
+        $pengguna = Login::all()->count();
         return view('dashboard.index', [
             'penjualan' => $penjualan,
-            'produk' => $produk
+            'produk' => $produk,
+            'pengguna' => $pengguna,
         ]);
     }
 
