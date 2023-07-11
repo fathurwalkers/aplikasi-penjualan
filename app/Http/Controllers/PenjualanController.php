@@ -44,8 +44,6 @@ class PenjualanController extends Controller
         $jumlah_penjualan = $request->jumlah_penjualan;
         $penjualan = Penjualan::find($id);
         $kategori = $penjualan->barang->barang_kategori;
-        // dump($penjualan);
-
         if ($tahun == null || $jumlah_penjualan == null) {
             $th = $penjualan->penjualan_tahun;
             $jp = $penjualan->penjualan_jumlah;
@@ -54,7 +52,6 @@ class PenjualanController extends Controller
                 'penjualan_jumlah' => $jp,
                 'updated_at' => now()
             ]);
-            // dd($update_penjualan);
             if ($update_penjualan == true) {
                 return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Penjualan telah berhasil diubah!');
             } else {
@@ -63,13 +60,11 @@ class PenjualanController extends Controller
         } else {
             $th = intval($tahun);
             $jp = intval($jumlah_penjualan);
-
             $update_penjualan = $penjualan->update([
                 'penjualan_tahun' => $th,
                 'penjualan_jumlah' => $jp,
                 'updated_at' => now()
             ]);
-            // dd($update_penjualan);
             if ($update_penjualan == true) {
                 return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Penjualan telah berhasil diubah!');
             } else {
