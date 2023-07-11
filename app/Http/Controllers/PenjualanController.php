@@ -20,20 +20,62 @@ class PenjualanController extends Controller
         return view('dashboard.penjualan.daftar-penjualan', [
             'penjualan' => $penjualan,
             'array_bulan' => $array_bulan,
-            'array_bulan1' => $array_bulan1,
-            'array_bulan2' => $array_bulan2,
+            'array_bulan1' => $array_bulan,
+            'array_bulan2' => $array_bulan,
             'produk' => $produk,
         ]);
     }
 
     public function hapus_penjualan(Request $request, $id)
     {
-        dd($id);
+        $penjualan = Penjualan::find($id);
+        $kategori = $penjualan->barang->barang_kategori;
+        $hapus_produk = $penjualan->forceDelete();
+        if ($hapus_produk == true) {
+            return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Penjualan telah berhasil dihapus!');
+        } else {
+            return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat dihapus.');
+        }
     }
 
     public function update_penjualan(Request $request, $id)
     {
-        dd($id);
+        $tahun = $request->tahun;
+        $jumlah_penjualan = $request->jumlah_penjualan;
+        $penjualan = Penjualan::find($id);
+        $kategori = $penjualan->barang->barang_kategori;
+        // dump($penjualan);
+
+        if ($tahun == null || $jumlah_penjualan == null) {
+            $th = $penjualan->penjualan_tahun;
+            $jp = $penjualan->penjualan_jumlah;
+            $update_penjualan = $penjualan->update([
+                'penjualan_tahun' => $th,
+                'penjualan_jumlah' => $jp,
+                'updated_at' => now()
+            ]);
+            // dd($update_penjualan);
+            if ($update_penjualan == true) {
+                return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Penjualan telah berhasil diubah!');
+            } else {
+                return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat diubah.');
+            }
+        } else {
+            $th = intval($tahun);
+            $jp = intval($jumlah_penjualan);
+
+            $update_penjualan = $penjualan->update([
+                'penjualan_tahun' => $th,
+                'penjualan_jumlah' => $jp,
+                'updated_at' => now()
+            ]);
+            // dd($update_penjualan);
+            if ($update_penjualan == true) {
+                return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Penjualan telah berhasil diubah!');
+            } else {
+                return redirect()->route('daftar-penjualan', $kategori)->with('status', 'Terjadi kesalahan. Data tidak dapat diubah.');
+            }
+        }
     }
 
     public function tambah_penjualan(Request $request)

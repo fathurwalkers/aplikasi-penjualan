@@ -194,8 +194,8 @@
                                                                     </label>
                                                                     <input type="number" class="form-control"
                                                                         id="tahun"
-                                                                        placeholder="Masukkan periode tahun..."
-                                                                        name="tahun" required>
+                                                                        value="{{ $item->penjualan_tahun }}"
+                                                                        name="tahun">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6 col-md-6 col-lg-6">
@@ -205,13 +205,13 @@
                                                                     </label>
                                                                     <input type="number" class="form-control"
                                                                         id="jumlah_penjualan"
-                                                                        placeholder="Masukkan jumlah penjualan..."
-                                                                        name="jumlah_penjualan" required>
+                                                                        value="{{ $item->penjualan_jumlah }}"
+                                                                        name="jumlah_penjualan">
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
+                                                        {{-- <div class="row">
                                                             <div class="col-sm-6 col-md-6 col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="bulan_awal">
@@ -219,10 +219,10 @@
                                                                     </label>
                                                                     <select class="form-control" id="bulan_awal"
                                                                         name="bulan_awal" required>
-                                                                        @foreach ($array_bulan as $item1)
+                                                                        @foreach ($array_bulan1 as $itemss)
                                                                             <option
-                                                                                value="{{ date('m', strtotime($item1)) }}">
-                                                                                {{ $item1 }}</option>
+                                                                                value="{{ date('m', strtotime($itemss)) }}">
+                                                                                {{ $itemss }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
@@ -234,16 +234,16 @@
                                                                     </label>
                                                                     <select class="form-control" id="bulan_akhir"
                                                                         name="bulan_akhir" required>
-                                                                        @foreach ($array_bulan as $item2)
+                                                                        @foreach ($array_bulan2 as $itemsss)
                                                                             <option
-                                                                                value="{{ date('m', strtotime($item2)) }}">
-                                                                                {{ $item2 }}
+                                                                                value="{{ date('m', strtotime($itemsss)) }}">
+                                                                                {{ $itemsss }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
