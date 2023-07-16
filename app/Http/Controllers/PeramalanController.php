@@ -54,6 +54,7 @@ class PeramalanController extends Controller
             $mape = abs(($nilaiAktual - $nilaiRamalan) / $nilaiAktual) * 100;
             $totalMAPE += $mape;
         }
+
         $maper = $totalMAPE / ($totalDataPenjualan - $periode);
         $session_hasilmovingaverage = session(['hasilMovingAverage' => $hasilMovingAverage]);
         $session_penjualan = session(['penjualan' => $penjualan]);

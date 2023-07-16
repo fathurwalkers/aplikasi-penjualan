@@ -8,11 +8,11 @@ Route::get('/login', [BackController::class, 'login'])->name('login');
 Route::get('/register', [BackController::class, 'register'])->name('register');
 Route::post('/login/post-login', [BackController::class, 'postlogin'])->name('post-login');
 Route::post('/register/post-register', [BackController::class, 'postregister'])->name('post-register');
-Route::post('/logout', [BackController::class, 'logout'])->name('logout');
 
 Route::get('/', fn () => redirect()->route('dashboard'));
 
 Route::group(['prefix' => '/users', 'middleware' => 'ceklogin'], function () {
+    Route::post('/logout', [BackController::class, 'logout'])->name('logout');
     Route::get('/', fn () => redirect()->route('daftar-users'));
     Route::get('/daftar-users', [BackController::class, 'daftar_users'])->name('daftar-users');
     Route::post('/hapus-user/{id}', [BackController::class, 'hapus_user'])->name('hapus-user');
