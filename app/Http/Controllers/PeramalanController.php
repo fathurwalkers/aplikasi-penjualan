@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\{Penjualan, Barang};
+use Illuminate\Support\{Str, Arr};
 
 class PeramalanController extends Controller
 {
@@ -25,6 +26,10 @@ class PeramalanController extends Controller
         $barang_id = intval($request->id_produk);
         $tahun = $request->tahun;
         $periode = $request->periode;
+
+        // $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barang_id) {
+        //     $query->where('id', $barang_id);
+        // })->get()->toArray();
 
         // $penjualan = $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barang_id) {
         //     $query->where('id', $barang_id);
@@ -58,15 +63,21 @@ class PeramalanController extends Controller
         // =========================================================================================================
         // =========================================================================================================
 
-        $penjualan = $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barang_id) {
+        $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barang_id) {
             $query->where('id', $barang_id);
         })->get()->toArray();
+
+
+        $array_jumlah_penjualan = [];
+        foreach ($penjualan as $itemsss) {
+            $array_jumlah_penjualan = Arr::prepend($array_jumlah_penjualan, $itemsss['penjualan_jumlah']);
+        }
 
         $totalData = count($penjualan);
 
         for ($i=0; $i < $totalData; $i++) {
             // // Define the sales data
-            $sales = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+            $sales = $array_jumlah_penjualan;
 
             // // Define the number of periods to forecast
             $periods = 3;
