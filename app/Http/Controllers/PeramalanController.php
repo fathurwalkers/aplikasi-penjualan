@@ -24,7 +24,8 @@ class PeramalanController extends Controller
         $bulan_awal = $request->bulan_awal;
         $bulan_akhir = $request->bulan_akhir;
         $barang_id = intval($request->id_produk);
-        $tahun = $request->tahun;
+        // $tahun = $request->tahun;
+        $tahun = '2023';
         $periode = $request->periode;
 
         // $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barang_id) {
@@ -65,28 +66,31 @@ class PeramalanController extends Controller
 
         $penjualan = Penjualan::where('penjualan_tahun', $tahun)->whereMonth('penjualan_bulan_awal', '>=', $bulan_awal)->whereMonth('penjualan_bulan_akhir', '<=', $bulan_akhir)->whereHas('barang', function ($query) use ($barang_id) {
             $query->where('id', $barang_id);
-        })->get()->toArray();
-
+        })->get();
 
         $array_jumlah_penjualan = [];
+        $hasilMovingAverage = [];
+
         foreach ($penjualan as $itemsss) {
-            $array_jumlah_penjualan = Arr::prepend($array_jumlah_penjualan, $itemsss['penjualan_jumlah']);
+            $array_jumlah_penjualan = Arr::prepend($array_jumlah_penjualan, $itemsss->penjualan_jumlah);
         }
 
         $totalData = count($penjualan);
+        $totalMAPE = 0;
+        $totalDataPenjualan = $totalData;
 
         for ($i=0; $i < $totalData; $i++) {
             // // Define the sales data
             $sales = $array_jumlah_penjualan;
 
             // // Define the number of periods to forecast
-            $periods = 3;
+            $periods = intval($request->periode);
 
-            // // Calculate the SMA
+            // // Kalkulasi satuan produk
             $sma = collect($sales)->take(-$periods)->average();
 
             // // Define the actual sales data for the forecast period
-            $actual = $penjualan[$i]['penjualan_jumlah'];
+            $actual = $penjualan[$i]->penjualan_jumlah;
 
             // // Calculate the forecast sales data for the forecast period
             $forecast = array_fill(0, $periods, $sma);
@@ -99,16 +103,20 @@ class PeramalanController extends Controller
                     return 0; // or handle the case when the divisor is zero
                 }
             })->average();
+            $totalMAPE += $mape;
+            $hasilMovingAverage[$i] = $mape;
 
-            dump($sales);
-            dump($periods);
-            dump($sma);
-            dump($forecast);
-            dump($mape);
-            dd($actual);
+            // dump($sales);
+            // dump($periods);
+            // dump($sma);
+            // dump($forecast);
+            // dump($mape);
+            // dd($actual);
 
         }
 
+        // dump($totalMAPE);
+        // dump($hasilMovingAverage);
         // // Output the results
         // echo "SMA: " . $sma . "\n";
         // echo "Forecast: " . implode(", ", $forecast) . "\n";
@@ -117,8 +125,8 @@ class PeramalanController extends Controller
 
         // =========================================================================================================
         // =========================================================================================================
-
-        $maper = $totalMAPE / ($totalDataPenjualan - $periode);
+        $maper = $totalMAPE;
+        // dd($maper);
         $session_hasilmovingaverage = session(['hasilMovingAverage' => $hasilMovingAverage]);
         $session_penjualan = session(['penjualan' => $penjualan]);
         $session_maper = session(['maper' => $maper]);
