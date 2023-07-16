@@ -55,6 +55,38 @@ class PeramalanController extends Controller
             $totalMAPE += $mape;
         }
 
+        // =========================================================================================================
+        // =========================================================================================================
+
+        // Define the sales data
+        $sales = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+        // Define the number of periods to forecast
+        $periods = 3;
+
+        // Calculate the SMA
+        $sma = collect($sales)->take(-$periods)->average();
+
+        // Define the actual sales data for the forecast period
+        $actual = [110, 120, 130];
+
+        // Calculate the forecast sales data for the forecast period
+        $forecast = array_fill(0, $periods, $sma);
+
+        // Calculate the MAPE
+        $mape = collect($actual)->zip($forecast)->map(function ($item) {
+            return abs(($item[0] - $item[1]) / $item[0]);
+        })->average() * 100;
+
+        // Output the results
+        echo "SMA: " . $sma . "\n";
+        echo "Forecast: " . implode(", ", $forecast) . "\n";
+        echo "Actual: " . implode(", ", $actual) . "\n";
+        echo "MAPE: " . $mape . "%\n";
+
+        // =========================================================================================================
+        // =========================================================================================================
+
         $maper = $totalMAPE / ($totalDataPenjualan - $periode);
         $session_hasilmovingaverage = session(['hasilMovingAverage' => $hasilMovingAverage]);
         $session_penjualan = session(['penjualan' => $penjualan]);
